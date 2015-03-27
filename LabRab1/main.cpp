@@ -26,6 +26,12 @@ int main()
 			{
 				system("cls");
 				char * str = new char[n];
+				if (!str) 
+				{
+					cout << "Error. No memory!!!\n";
+					system("pause");
+					return 0;
+				}
 				printLexSubStr(str, n);
 				delete[] str;
 				cout << "Press Backspace to back in menu.";
