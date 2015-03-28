@@ -43,24 +43,6 @@ int main()
 			cout << endl << "Press Backspace to back in menu.";
 			while (_getch() != 8) cout << "\a";
 			break;
-				system("cls");
-				char * str = new char[n];
-				if (!str) 
-				{
-					cout << "Error. No memory!!!\n";
-					system("pause");
-					return 0;
-				}
-				printLexSubStr(str, n);
-				delete[] str;
-				cout << "Press Backspace to back in menu.";
-				while (_getch() != 8) cout << "\a"; }
-				break;
-			default:
-				cout << "Error!!!\a";
-				cout << endl << "Press Backspace to back in menu.";
-				while (_getch() != 8) cout << "\a";
-				break;
 		}
 	} while (choice);
 	//system("pause");
