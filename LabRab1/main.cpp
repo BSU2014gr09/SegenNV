@@ -1,4 +1,5 @@
 #include<iostream>
+#include<conio.h>
 #include"func.h"
 using namespace std;
 
@@ -26,12 +27,6 @@ int main()
 		{
 			system("cls");
 			char * str = new char[n];
-			if (!str)
-			{
-				cout << "Error: No memory. \n\a";
-				system("pause");
-				return 1;
-			}
 			printLexSubStr(str, n);
 			delete[] str;
 			cout << "Press Backspace to back in menu.";
