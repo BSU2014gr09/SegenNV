@@ -1,4 +1,5 @@
 #include<iostream>
+#include<new>
 #include<conio.h>
 #include"func.h"
 using namespace std;

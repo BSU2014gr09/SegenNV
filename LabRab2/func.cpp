@@ -1,27 +1,29 @@
 #include<iostream>
+#include<iomanip>
 #include"func.h"
 using namespace std;
 
-void initArr(int **a, int n, int m, ifstream &in)
+void initArr(float **a, int n, int m, ifstream &in)
 {
 	for (int j = 0; j < n; j++)
 	{	
-		for (int **i = a; i < a + m; i++)
+		for (float **i = a; i < a + m; i++)
 			in >> *(*i+j);
 	}
 }
 
-void printArr(int ** a, int n, int m, ofstream &out)
+void printArr(float ** a, int n, int m, ofstream &out)
 {
+	//out.width(2);
 	for (int j = 0; j < n; j++)
 	{
-		for (int **i = a; i < a + m; i++)
-			out << *(*i + j) << " ";
+		for (float **i = a; i < a + m; i++)
+			out<<setw(4) << *(*i + j) << " ";
 		out << endl;
 	}
 }
 
-int amtZero(int * a, int n)
+int amtZero(float * a, int n)
 {
 	int amt = 0;
 	while (n--)
@@ -32,9 +34,9 @@ int amtZero(int * a, int n)
 	return amt;
 }
 
-void sortColumn(int ** a, int n, int m)
+void sortColumn(float ** a, int n, int m)
 {
-	for (int **i = a; i < a + m - 1; i++)
-		for (int **j = i + 1; j < a + m; j++)
+	for (float **i = a; i < a + m - 1; i++)
+		for (float **j = i + 1; j < a + m; j++)
 			if (amtZero(*i, n)>amtZero(*j, n)) swap(*i, *j);
 }
