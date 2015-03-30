@@ -1,5 +1,4 @@
-#include<cstring>
-#include<conio.h>
+#pragma once
 void initArr(char *, int);
 void printArr(char *);
 void clearBoof();
