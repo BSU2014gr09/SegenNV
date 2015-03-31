@@ -35,8 +35,8 @@ int main()
 			cout << "Прочитал m. \n";
 			in >> m;
 			if (n < 0 || m < 0){
-				out << "Ошибка: Размеры матрицы не могут быть отрицательными.";
-				return 1;
+				out << "Ошибка: Размеры матрицы не могут быть отрицательными.\n";
+				continue;
 			}
 			float ** arr = new float *[m];
 			for (float ** i = arr; i < arr + m; i++)
