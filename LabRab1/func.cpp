@@ -32,11 +32,11 @@ void printLexSubStr(char * str, int n)
 	cout << "Enter string: \n";
 	initArr(str, n);
 	//clearBoof();
-	char * subStr = strtok(str, " ,.!-");
+	char * subStr = strtok(str, " ,.!-"); //разбиваем строку на слова
 	while (subStr)
 	{
-		if (isLexicographical(subStr)) printArr(subStr);
-		subStr = strtok(NULL, " ,.!-");
+		if (isLexicographical(subStr)) printArr(subStr); //проверяем, подходит ли нам слово, если да, то вывводим
+		subStr = strtok(NULL, " ,.!-"); //переходим к следующемц слову
 	}
 }
 
@@ -60,15 +60,15 @@ void interface(const char * task, int max_n)
 		case 2:
 		{
 			system("cls");
-			char * str = new char[max_n];
-			printLexSubStr(str, max_n);
-			delete[] str;
-			cout << "Press Backspace to back in menu.";
-			while (_getch() != 8) cout << "\a"; }
+			char * str = new char[max_n]; //выделяем память на строку максимальной длинны
+			printLexSubStr(str, max_n); //выполняем задание
+			delete[] str; //очищаем память
+			cout << "Press Backspace to back in menu."; 
+			while (_getch() != 8) cout << "\a"; } //пока не нажата Backspace, не выходим в меню
 		break;
 		default:
 			system("cls");
-			cout << "Error:\a \'" << (char)(choice + 48) << "\' undefined. ";
+			cout << "Error:\a \'" << (char)(choice + 48) << "\' undefined. "; //сообщение об ошибке
 			cout << endl << "Press Backspace to back in menu.";
 			while (_getch() != 8) cout << "\a";
 			break;
