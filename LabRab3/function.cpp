@@ -39,7 +39,8 @@ void complex::operator=(double nmb)
 	realPart = nmb;
 	complexPart = 0;
 }
-
+// умнее делать реализацию опреторов += через + (или наоборот), а не плодить кучу почти одинакового кода
+// аналогично с -=,*=  и т.д.
 void complex::operator+=(complex nmb)
 {
 	realPart += nmb.realPart;
@@ -153,6 +154,9 @@ bool complex::operator==(complex nmb)
 	bool r = (realPart == nmb.realPart);
 	bool c = (complexPart == nmb.complexPart);
 	return (r&&c);
+/*	return (realPart == nmb.realPart)&& (complePart == nmb.complexPart); стиль БСА */
+/*	return realPart == nmb.realPart
+	       && complePart == nmb.complexPart; стиль САА */
 }
 
 double abs(complex nmb)
