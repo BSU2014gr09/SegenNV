@@ -4,9 +4,6 @@ using namespace std;
 
 int main()
 {
-	complex z(-1, -1);
-	cout << arg(z)<<endl;//аргумент
-
 	complex a[2],i(3,6), c;
 	cout << i << endl;
 	i = complex(3, 5);
@@ -20,12 +17,15 @@ int main()
 		cout << a[i];
 	c = a[0] / a[1];
 	cout << c<<endl;
-	
+	c += a[0];
+	cout << c<<endl;
+	c *= a[1];
 	cout << c<<endl;
 	cout << abs(c)<<endl;
 	cout << conj(c)<<endl;//сопряженное
 	c = 4 + i;
 	cout << c << endl;
+	//еще много чего  переопределено.
 	system("pause");
 	return 0;
 }

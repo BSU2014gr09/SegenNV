@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include<cstring>
-#include<math.h>
+#include<cmath>
 #include"complex.h"
 using namespace std;
 
@@ -17,7 +17,7 @@ complex::complex()
 	realPart = 0;
 }*/
 
-ostream& operator<< (ostream& out, complex nmb)
+ostream& operator<< (ostream& out, const complex nmb)
 {
 	return out << "(" << nmb.realPart << ", " << nmb.complexPart << ")";
 }
@@ -40,128 +40,116 @@ void complex::operator=(double nmb)
 	complexPart = 0;
 }
 
-void complex::operator+=(complex nmb)
+complex operator/(const complex left, const complex right)
 {
-	realPart += nmb.realPart;
-	complexPart += nmb.complexPart;
+	double a = left.realPart;
+	double b = left.complexPart;
+	double c = right.realPart;
+	double d = right.complexPart;
+	return complex((a*c + b*d) / (c*c + d*d), (b*c - a*d) / (c*c + d*d));
+}
+complex operator/(const complex left, const double right)
+{
+	double a = left.realPart;
+	double b = left.complexPart;
+	return complex(a / right, b / right);
+}
+complex operator/(const double left, const complex right)
+{
+	double a = left;
+	double c = right.realPart;
+	double d = right.complexPart;
+	return complex((a*c) / (c*c + d*d), (-a*d) / (c*c + d*d));
 }
 
-void complex::operator+=(double nmb)
+complex operator*(const complex left, const complex right)
 {
-	realPart += nmb;
+	double a = left.realPart;
+	double b = left.complexPart;
+	double c = right.realPart;
+	double d = right.complexPart;
+	return complex((a*c - b*d), (b*c + a*d));
+}
+complex operator*(const complex left, const double right)
+{
+	double a = left.realPart;
+	double b = left.complexPart;
+	return complex(a * right, b * right);
+}
+complex operator*(const double left, const complex right)
+{
+	double c = right.realPart;
+	double d = right.complexPart;
+	return complex(left*c, left*d);
 }
 
-void complex::operator-=(complex nmb)
-{
-	realPart -= nmb.realPart;
-	complexPart -= nmb.complexPart;
-}
-
-void complex::operator-=(double nmb)
-{
-	realPart -= nmb;
-}
-
-void complex::operator*=(complex nmb)
-{
-	double r = realPart;
-	double c = complexPart;
-	realPart = r * nmb.realPart - c * nmb.complexPart;
-	complexPart = r * nmb.complexPart - c * nmb.realPart;
-}
-
-void complex::operator*=(double nmb)
-{
-	realPart *= nmb;
-	complexPart *= nmb;
-}
-
-void complex::operator/=(complex nmb)
-{
-	double r = realPart;
-	double c = complexPart;
-	realPart = (r * nmb.realPart + c * nmb.complexPart) / (r*r + c*c);
-	complexPart = (c * nmb.complexPart - r * nmb.realPart) / (r*r + c*c);
-}
-
-void complex::operator/=(double nmb)
-{
-	realPart /= nmb;
-	complexPart /= nmb;
-}
-
-complex complex::operator*(complex nmb)
-{
-	double r = realPart * nmb.realPart - complexPart * nmb.complexPart;
-	double c = realPart * nmb.complexPart - complexPart * nmb.realPart;
-	return complex(r, c);
-}
-
-complex complex::operator*(double nmb)
-{
-	double r = realPart*nmb;
-	double c = complexPart*nmb;
-	return complex(r, c);
-}
-
-complex complex::operator/(complex nmb)
-{
-	double r = (realPart * nmb.realPart + complexPart * nmb.complexPart) / (realPart*realPart + complexPart*complexPart);
-	double c = (complexPart * nmb.complexPart - realPart * nmb.realPart) / (realPart*realPart + complexPart*complexPart);
-	return complex(r, c);
-}
-
-complex operator+(double nmb1, complex nmb2)
+complex operator+(const double nmb1, const complex nmb2)
 {
 	double r = nmb1 + nmb2.realPart;
 	double c = nmb2.complexPart;
 	return complex(r, c);
 }
-complex operator-(double nmb1, complex nmb2)
-{
-	double r = nmb1 - nmb2.realPart;
-	double c = nmb2.complexPart;
-	return complex(r, c);
-}
-complex operator+(complex nmb1, complex nmb2)
-{
-	double r = nmb1.realPart + nmb2.realPart;
-	double c = nmb1.complexPart + nmb2.complexPart;
-	return complex(r, c);
-}
-complex operator-(complex nmb1, complex nmb2)
-{
-	double r = nmb1.realPart - nmb2.realPart;
-	double c = nmb1.complexPart - nmb2.complexPart;
-	return complex(r, c);
-}
-complex operator+(complex nmb1, double nmb2)
+complex operator+(const complex nmb1, const double nmb2)
 {
 	double r = nmb1.realPart + nmb2;
 	double c = nmb1.complexPart;
 	return complex(r, c);
 }
-complex operator-(complex nmb1, double nmb2)
+complex operator+(const complex nmb1, const complex nmb2)
+{
+	double r = nmb1.realPart + nmb2.realPart;
+	double c = nmb1.complexPart + nmb2.complexPart;
+	return complex(r, c);
+}
+
+complex operator-(const double nmb1, const complex nmb2)
+{
+	double r = nmb1 - nmb2.realPart;
+	double c = nmb2.complexPart;
+	return complex(r, c);
+}
+complex operator-(const complex nmb1, const complex nmb2)
+{
+	double r = nmb1.realPart - nmb2.realPart;
+	double c = nmb1.complexPart - nmb2.complexPart;
+	return complex(r, c);
+}
+complex operator-(const complex nmb1, const double nmb2)
 {
 	double r = nmb1.realPart - nmb2;
 	double c = nmb1.complexPart;
 	return complex(r, c);
 }
 
-bool complex::operator==(complex nmb)
+bool operator==(const complex left, const complex right)
 {
-	bool r = (realPart == nmb.realPart);
-	bool c = (complexPart == nmb.complexPart);
+	bool r = (left.realPart == right.realPart);
+	bool c = (left.complexPart == right.complexPart);
 	return (r&&c);
 }
+bool operator!=(const complex left, const complex right)
+{
+	bool r = (left.realPart != right.realPart);
+	bool c = (left.complexPart != right.complexPart);
+	return (r||c);
+}
 
-double abs(complex nmb)
+double abs(const complex nmb)
 {
 	return sqrt(nmb.realPart*nmb.realPart + nmb.complexPart*nmb.complexPart);
 }
 
-complex conj(complex nmb)
+complex conj(const complex nmb)
 {
-	nmb.complexPart *= -1;
-	return nmb;
+	return complex(nmb.realPart, -nmb.complexPart);
+}
+
+double arg(const complex z)
+{
+	const double pi = 3.14159265;
+	double x = z.realPart;
+	double y = z.complexPart;
+	if (x > 0) return atan(y/x) * 180/pi;
+	if (x < 0 && y >= 0) return (atan(y / x) + pi) * 180/pi;
+	return (atan(y / x) - pi) * 180/pi;
 }
