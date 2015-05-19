@@ -1,5 +1,6 @@
 #include<iostream>
 #include<cstdlib>
+#include<cmath>
 #include"stack.h"
 using namespace std;
 
@@ -40,6 +41,11 @@ int main()
 			case '/':
 				tmp = PRN.pop();
 				PRN.push(PRN.pop() / tmp);
+				c++;
+				break;
+			case '^':
+				tmp = PRN.pop();
+				PRN.push(pow(PRN.pop() , tmp));
 				c++;
 				break;
 				/*case '%':
