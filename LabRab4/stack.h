@@ -1,11 +1,16 @@
+struct node
+{
+	float nmb;
+	node * next;
+};
+
 struct stack
 {
 	private:
-		float nmb;
-		stack * next;
+		node * top;
 	public:
-		stack() : next(nullptr) {}
+		stack() : top(nullptr) {}
 		void push(float);
 		float pop();
-		bool empty();
+		bool isEmpty();
 };

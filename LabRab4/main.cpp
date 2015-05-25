@@ -22,23 +22,43 @@ int main()
 			switch (*c)
 			{
 			case '+':
+				if (PRN.isEmpty())
+				{
+					cout << "Ошибка: не верное выражение!";
+					break;
+				}
 				tmp = PRN.pop();
 				tmp += PRN.pop();
 				PRN.push(tmp);
 				c++;
 				break;
 			case '-':
+				if (PRN.isEmpty())
+				{
+					cout << "Ошибка: не верное выражение!";
+					break;
+				}
 				tmp = PRN.pop();
 				PRN.push(PRN.pop() - tmp);
 				c++;
 				break;
 			case '*':
+				if (PRN.isEmpty())
+				{
+					cout << "Ошибка: не верное выражение!";
+					break;
+				}
 				tmp = PRN.pop();
 				tmp *= PRN.pop();
 				PRN.push(tmp);
 				c++;
 				break;
 			case '/':
+				if (PRN.isEmpty())
+				{
+					cout << "Ошибка: не верное выражение!";
+					break;
+				}
 				tmp = PRN.pop();
 				PRN.push(PRN.pop() / tmp);
 				c++;

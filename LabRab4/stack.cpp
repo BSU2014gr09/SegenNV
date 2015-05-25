@@ -1,24 +1,32 @@
+#include<iostream>
 #include"stack.h"
 #include<new>
 
 void stack::push(float nmb)
 {
-	stack * node = new stack;
-	node->nmb = nmb;
-	node->next = next;
-	next = node;
+	node * tmpNode = new(std::nothrow) node;
+	if (!tmpNode)
+	{
+		std::cout << "no memory!\n";
+	}
+	else 
+	{
+		tmpNode->nmb = nmb;
+		tmpNode->next = top;
+		top = tmpNode;
+	}
 }
 
 float stack::pop()
 {
-	float tmp = next->nmb;
-	stack * node = next;
-	next = next->next;
-	delete node;
+	float tmp = top->nmb;
+	node * tmpNode = top;
+	top = top->next;
+	delete tmpNode;
 	return tmp;
 }
 
-bool stack::empty()
+bool stack::isEmpty()
 {
-	return (next == nullptr);
+	return (top == nullptr);
 }
