@@ -9,6 +9,12 @@ class arrStr
 		arrStr() : arr(nullptr) {}
 		bool setStr(int);
 		void getStr();
-		void sort();
+		void sort(bool );
 		int amtWordNumb(char *);
+		~arrStr()
+		{
+			for (int i = 0; i < size; i++)
+				delete[] arr[i];
+			delete[] arr;
+		}
 };

@@ -30,11 +30,11 @@ void arrStr::getStr()
 		std::cout << arr[i] << std::endl;
 }
 
-void arrStr::sort()
+void arrStr::sort(bool re)
 {
 	for (int i = 0; i < size - 1; i++)
 		for (int j = i; j < size; j++)
-			if (amtWordNumb(arr[i]) > amtWordNumb(arr[j])) std::swap(arr[i], arr[j]);
+			if (re^!(amtWordNumb(arr[i]) > amtWordNumb(arr[j]))) std::swap(arr[i], arr[j]);
 }
 
 int arrStr::amtWordNumb(char * str)
