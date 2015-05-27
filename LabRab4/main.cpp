@@ -10,8 +10,8 @@ int main()
 	stack PRN;
 	int n = 100;
 	while (1){
-		char * str = new char[100];
-		cin.getline(str, 100);
+		char * str = new char[n];
+		cin.getline(str, n);
 		//cout << str;
 		char * ptrEnd;
 		char * c = str;
@@ -24,10 +24,15 @@ int main()
 			case '+':
 				if (PRN.isEmpty())
 				{
-					cout << "Ошибка: не верное выражение!";
-					break;
+					cout << "Ошибка: неверное выражение!\n";
+					goto Err;
 				}
 				tmp = PRN.pop();
+				if (PRN.isEmpty())
+				{
+					cout << "Ошибка: неверное выражение!\n";
+					goto Err;
+				}
 				tmp += PRN.pop();
 				PRN.push(tmp);
 				c++;
@@ -35,20 +40,30 @@ int main()
 			case '-':
 				if (PRN.isEmpty())
 				{
-					cout << "Ошибка: не верное выражение!";
-					break;
+					cout << "Ошибка: неверное выражение!\n";
+					goto Err;
 				}
 				tmp = PRN.pop();
+				if (PRN.isEmpty())
+				{
+					cout << "Ошибка: неверное выражение!\n";
+					goto Err;
+				}
 				PRN.push(PRN.pop() - tmp);
 				c++;
 				break;
 			case '*':
 				if (PRN.isEmpty())
 				{
-					cout << "Ошибка: не верное выражение!";
-					break;
+					cout << "Ошибка: неверное выражение!\n";
+					goto Err;
 				}
 				tmp = PRN.pop();
+				if (PRN.isEmpty())
+				{
+					cout << "Ошибка: неверное выражение!\n";
+					goto Err;
+				}
 				tmp *= PRN.pop();
 				PRN.push(tmp);
 				c++;
@@ -56,15 +71,30 @@ int main()
 			case '/':
 				if (PRN.isEmpty())
 				{
-					cout << "Ошибка: не верное выражение!";
-					break;
+					cout << "Ошибка: неверное выражение!\n";
+					goto Err;
 				}
 				tmp = PRN.pop();
+				if (PRN.isEmpty())
+				{
+					cout << "Ошибка: неверное выражение!\n";
+					goto Err;
+				}
 				PRN.push(PRN.pop() / tmp);
 				c++;
 				break;
 			case '^':
+				if (PRN.isEmpty())
+				{
+					cout << "Ошибка: неверное выражение!\n";
+					goto Err;
+				}
 				tmp = PRN.pop();
+				if (PRN.isEmpty())
+				{
+					cout << "Ошибка: неверное выражение!\n";
+					goto Err;
+				}
 				PRN.push(pow(PRN.pop() , tmp));
 				c++;
 				break;
@@ -76,12 +106,13 @@ int main()
 					break;*/
 			}
 			float nmb = strtod(c, &ptrEnd);
+			if (*c == '+' || *c == '-' || *c == '*' || *c == '/' || *c == '^') c--;
 			if (nmb == 0 && *c != '0') { c++; continue; }
 			PRN.push(nmb);
 			c = ptrEnd;
 		}
 		cout << "Результат выражения равен " << PRN.pop() << endl;
-		delete[] str;
+Err:		delete[] str;
 	}
 	
 	/*char k;
