@@ -1,5 +1,5 @@
-//#ifdef passengers_h
-//#define passengers_h
+#ifdef passengers_h
+#define passengers_h
 
 #include<iostream>
 
@@ -20,4 +20,4 @@ class Passenger
 		friend char * getName(Passenger *);
 };
 
-//#endif
+#endif
